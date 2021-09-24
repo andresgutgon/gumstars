@@ -14,19 +14,25 @@ Rails + React
 - [x] Dummy Product detail route
 
 ## TODO Styles
-- [ ] Add Tailwind to style the pages
+- [x] Add Tailwind to style the pages
+- [x] Add Gunroad favicon
+- [x] Stars average rating with all reviews
 - [ ] Show product reviews (No auth required for the challenge)
-- [ ] Stars overall rating with all reviews
-
-## TODO Vanilla JS interactivity
-- [ ] Make backend to add review by AJAX
-- [ ] Generate UI to rate with vanilla JS
+- [ ] Make modal with Hotwired (aka kind of Vanilla JS)
 
 ## TODO React
 - Make React version of rating system
 
 ## TODO Realtime
+- [ ] Add Redis addon to Heroku or deploy to Digital Ocean. Heroku requires to add a credit card even for a free addon.
 - [ ] Use ActionCable to get by Websockets latest changes on product reviews
+
+## Compromises
+Things I would do different or I have doubts.
+
+1- Stars SVG as in Figma. I wanted full fidelity to Figma (Kind of, I used Tailwind defaults) regarding how stars looks
+in the UI. For that reason I used original SVGs with their filters. The stars looks nice but I couldn't
+find a nicer way of not repeating this SVG. One solution would be transform in Figma those gradients (not sure, I don't have this Figma knowledge). Other option could be to simplify these stars and be plain SVG without filters
 
 ## Administrative
 I use [aministrative](https://github.com/thoughtbot/administrate) for having a CRUD interface and
@@ -38,3 +44,6 @@ To generate new dashboards in administrative do this:
 rails generate administrate:dashboard YourRailsModel
 ```
 
+## Resources
+I like to document the resources I found to do what I need. This way I can re-read in understand why I took a decision
+- [How to create modals using Hotwire](https://bramjetten.dev/articles/how-to-create-modals-using-hotwire)

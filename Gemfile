@@ -13,7 +13,10 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem 'foreman'
 gem "importmap-rails", ">= 0.3.4"
+gem "cssbundling-rails", ">= 0.1.0"
+gem 'jsbundling-rails'
 
 # Admin interface useful for generating products
 # Not necessary for this project but I'm a nerd and wanted to try

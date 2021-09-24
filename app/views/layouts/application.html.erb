@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <title>Gumstars</title>
+    <meta name="viewport" content="width=device-width"/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
   </head>
 
-  <body>
-    <%= yield %>
+  <body class='font-sans'>
+    <div class='container mt-20 max-w-[580px]'>
+      <%= yield %>
+    </div>
   </body>
 </html>
