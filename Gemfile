@@ -15,6 +15,10 @@ gem "puma", "~> 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", ">= 0.3.4"
 
+# Admin interface useful for generating products
+# Not necessary for this project but I'm a nerd and wanted to try
+gem "administrate"
+
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", ">= 0.7.11"
 
@@ -44,7 +48,9 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
-  gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
+  gem "byebug"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 
 group :development do
