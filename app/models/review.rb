@@ -5,7 +5,7 @@ class Review < ApplicationRecord
   belongs_to :product
 
   # Validations
-  validates :rating, presence: true
+  validates :comment, presence: true
   # NOTE: In a real app this message would be I18n, world is a diverse and multilingual place
   validates(
     :rating,

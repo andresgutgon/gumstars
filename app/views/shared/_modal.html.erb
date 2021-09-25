@@ -1,0 +1,10 @@
+<turbo-frame id="modal">
+  <div class="modal" data-controller="modal" data-action="keyup@document->modal#escClose">
+    <button type="button" class="modal-backdrop" tabindex="-1" data-action="modal#close"></button>
+    <div class="modal-window">
+      <div class='p-6 sm:p-10'>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

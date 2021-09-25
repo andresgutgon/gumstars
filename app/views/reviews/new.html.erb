@@ -1,0 +1,60 @@
+<%= render :layout => 'shared/modal' do %>
+  <%= turbo_frame_tag "review_form" do %>
+    <%= form_for(
+      [@product, @review],
+      data: {
+        controller: "close-modal-on-form-success",
+        action: "turbo:submit-end->close-modal-on-form-success#closeModal"
+    }) do |f| %>
+      <div class='space-y-10'>
+        <% if flash[:messages] %>
+          <ul class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <% flash[:messages].each do |message| %>
+              <li><%= message%></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <h3 class='font-bold text-2xl sm:text-3xl mb-30'>What’s your rating?</h3>
+        <fieldset class='flex flex-col space-y-5'>
+          <legend class='block text-2xl'>Rating</legend>
+          <div class="radio-stars">
+            <% (Review::VALID_RATINGS.reverse + [0]).each_with_index do |rating, index| %>
+              <% label_class = rating > 0 && rating.even? ? 'star-end' : 'star-begining' %>
+              <%=
+                f.radio_button(
+                  :rating,
+                  rating,
+                  class: "#{rating == 0 ? 'stars-reset' : nil}"
+                )
+              %>
+              <% label_for =  "review_rating_#{rating}" %>
+              <label data-test="<%= "product.#{label_for}" %>" for="<%= label_for%>" class="<%= label_class %>">
+                <div class='sr-only'><%= rating %></div>
+              </label>
+            <% end  %>
+          </div>
+        </fieldset>
+
+        <div class='flex flex-col space-y-5'>
+          <%= label :comment, 'Review', class: 'block text-2xl' %>
+          <%=
+            f.text_area(
+              :comment,
+              placeholder: 'Start typing...',
+              class: 'resize-none text-xl pl-0 ring-0 focus:ring-0 border-0 outline-none focus:outline-none rounded placeholder-gray-300 form-textarea',
+              data: { test: 'product.review.comment' }
+            )
+          %>
+        </div>
+      </div>
+
+      <%=
+        f.submit(
+          'Submit review',
+          class: 'gs-button gs-button--wide',
+          data: { test: 'product.review.submit_button' }
+        )
+      %>
+    <% end %>
+  <% end %>
+<% end %>

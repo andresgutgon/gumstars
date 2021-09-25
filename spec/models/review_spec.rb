@@ -7,7 +7,8 @@ RSpec.describe Review, type: :model do
     subject do
       model = described_class.new(
         product: product,
-        rating: rating
+        rating: rating,
+        comment: 'Not bad'
       )
       model.valid?
       model
