@@ -1,0 +1,28 @@
+<ul class='flex space-x-1'>
+  <% stars.each_with_index do |star, index| %>
+    <%
+      prev_star =  stars[index - 1 < 0 ? 0 : index - 1]
+      show_full_star = full_stars && prev_star.max <= rating
+    %>
+    <li class='flex items-center justify-center'>
+      <div class='relative w-[15px] h-[30px] overflow-hidden'>
+        <div class='absolute inset-0'>
+          <% if rating >= star.min || show_full_star %>
+            <%= render partial: 'reviews/shared/on_star'  %>
+          <% else %>
+            <%= render partial: 'reviews/shared/off_star'  %>
+          <% end %>
+        </div>
+      </div>
+      <div class='relative w-[15px] h-[30px] overflow-hidden'>
+        <div class='absolute inset-0' style='left: -15px'>
+          <% if rating > star.min || show_full_star %>
+            <%= render partial: 'reviews/shared/on_star'  %>
+          <% else %>
+            <%= render partial: 'reviews/shared/off_star'  %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
