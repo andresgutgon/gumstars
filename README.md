@@ -17,15 +17,21 @@ Rails + React
 - [x] Add Tailwind to style the pages
 - [x] Add Gunroad favicon
 - [x] Stars average rating with all reviews
-- [ ] Show product reviews (No auth required for the challenge)
+- [x] Show product reviews (No auth required for the challenge)
+
+## Make review vanilla JS (well, Hotwire)
 - [ ] Make modal with Hotwired (aka kind of Vanilla JS)
+- [ ] Implement review creating logic in the backend
+
+## Fix deploy Heroku
+- [ ] Assets are not compiled CSS and JS
+
+## TODO Realtime
+- [ ] Use ActionCable to get by Websockets latest changes on product reviews
+- [ ] Add Redis addon to Heroku or deploy to Digital Ocean. Heroku requires to add a credit card even for a free addon.
 
 ## TODO React
 - Make React version of rating system
-
-## TODO Realtime
-- [ ] Add Redis addon to Heroku or deploy to Digital Ocean. Heroku requires to add a credit card even for a free addon.
-- [ ] Use ActionCable to get by Websockets latest changes on product reviews
 
 ## Compromises
 Things I would do different or I have doubts.
@@ -33,6 +39,8 @@ Things I would do different or I have doubts.
 1- Stars SVG as in Figma. I wanted full fidelity to Figma (Kind of, I used Tailwind defaults) regarding how stars looks
 in the UI. For that reason I used original SVGs with their filters. The stars looks nice but I couldn't
 find a nicer way of not repeating this SVG. One solution would be transform in Figma those gradients (not sure, I don't have this Figma knowledge). Other option could be to simplify these stars and be plain SVG without filters
+
+2- I use [Hotwire](https://hotwired.dev/) for the vanilla JS version. Is not pure vanilla. Is better. Let's code. I think any Rails app that is not using a JS framework in 2021 should try Hotwire
 
 ## Administrative
 I use [aministrative](https://github.com/thoughtbot/administrate) for having a CRUD interface and
