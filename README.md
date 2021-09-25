@@ -24,7 +24,7 @@ Rails + React
 - [ ] Implement review creating logic in the backend
 
 ## Fix deploy Heroku
-- [ ] Assets are not compiled CSS and JS
+- [x] Assets are not compiled CSS and JS. It was adding the [Nodejs Buildpack in Heroku](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app)
 
 ## TODO Realtime
 - [ ] Use ActionCable to get by Websockets latest changes on product reviews
