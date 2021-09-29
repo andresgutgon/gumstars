@@ -21,5 +21,10 @@ module.exports = {
   },
   variants: {
     container: [],
-  }
+  },
+  plugins: [
+    require("@tailwindcss/forms")({
+      strategy: 'class',
+    }),
+  ],
 }

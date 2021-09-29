@@ -46,6 +46,19 @@ jobs:
       - name: Create DB
         run: |
           bin/rails db:prepare
+
+      - name: Install Node packages
+        run: |
+          yarn install
+
+      - name: Build JS assets
+        run: |
+          yarn build
+
+      - name: Build CSS assets
+        run: |
+          yarn build:css
+
       - name: Run tests
         run: |
           bundle exec rspec

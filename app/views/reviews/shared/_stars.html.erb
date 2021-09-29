@@ -5,23 +5,17 @@
       show_full_star = full_stars && prev_star.max <= rating
     %>
     <li class='flex items-center justify-center'>
-      <div class='relative w-[15px] h-[30px] overflow-hidden'>
-        <div class='absolute inset-0'>
-          <% if rating >= star.min || show_full_star %>
-            <%= render partial: 'reviews/shared/on_star'  %>
-          <% else %>
-            <%= render partial: 'reviews/shared/off_star'  %>
+      <div class='star'>
+        <% if show_full_star %>
+          <div class='starIcon starIcon--full'>
+        <% else %>
+          <% if rating >= star.min %>
+            <div class='starIcon starIcon--halfStart' />
           <% end %>
-        </div>
-      </div>
-      <div class='relative w-[15px] h-[30px] overflow-hidden'>
-        <div class='absolute inset-0' style='left: -15px'>
-          <% if rating > star.min || show_full_star %>
-            <%= render partial: 'reviews/shared/on_star'  %>
-          <% else %>
-            <%= render partial: 'reviews/shared/off_star'  %>
+          <% if  rating > star.min %>
+            <div class='starIcon starIcon--halfEnd' />
           <% end %>
-        </div>
+        <% end %>
       </div>
     </li>
   <% end %>

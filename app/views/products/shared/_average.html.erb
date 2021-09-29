@@ -1,0 +1,6 @@
+<% unless @average_rating.zero?  %>
+  <div class='font-normal text-5xl' data-test='product.average.number'>
+    <%= rating_format(average_rating) %>
+  </div>
+<% end %>
+<%= stars(rating: average_rating, full_stars: true) %>

@@ -2,7 +2,9 @@
   "name": "Gumstars",
   "private": "true",
   "dependencies": {
+    "@hotwired/stimulus": "^3.0.0",
     "@hotwired/turbo-rails": "^7.0.0",
+    "@tailwindcss/forms": "^0.3.3",
     "autoprefixer": "^10.3.5",
     "esbuild": "^0.13.2",
     "postcss": "^8.3.7",

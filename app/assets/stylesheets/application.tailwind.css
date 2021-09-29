@@ -1,3 +1,125 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
+
+.modal {
+  @apply flex items-center justify-center;
+  @apply fixed z-40 inset-0 h-full p-6;
+}
+
+.modal-window {
+  @apply w-full max-w-lg overflow-hidden relative;
+  @apply bg-white shadow-md rounded-xl;
+}
+
+.modal-backdrop {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  @apply cursor-default;
+  @apply w-full h-full fixed inset-0;
+  @apply bg-gray-700 bg-opacity-30;
+}
+.gs-button {
+  @apply min-w-[140px] font-bold text-lg leading-5 text-gray-500;
+  @apply cursor-pointer shadow active:shadow-inner bg-white active:bg-gray-50 rounded;
+  @apply border border-gray-300 hover:shadow-md;
+  @apply py-3.5 px-2 flex justify-center items-center;
+}
+.gs-button--wide {
+  @apply min-w-[190px];
+}
+
+.star {
+  @apply w-8 h-8 relative;
+  background-image: url('/star_off.svg');
+}
+
+.starIcon {
+  @apply h-8 z-10 absolute top-0 bottom-0;
+  background-image: url('/star_on.svg');
+}
+
+.starIcon--full {
+  @apply w-8;
+}
+.starIcon--halfStart {
+  @apply w-4;
+}
+.starIcon--halfEnd {
+  background-position: -16px 0;
+  @apply w-4 left-4;
+}
+
+.star--button:hover {
+  @apply cursor-pointer;
+}
+
+.star--button .starIcon--halfStart,
+.star--button .starIcon--halfEnd {
+  @apply transition-opacity duration-100 ease-in-out;
+  @apply opacity-0;
+}
+
+.star--button .starIcon--halfStart:hover,
+.star--button .starIcon--halfEnd:hover {
+  @apply opacity-100;
+}
+
+/*
+  Radio button star
+  This styles provide a working stars without javascript
+  hover and checked states
+  copied from here:
+  https://codepen.io/lsirivong/pen/ekBxI
+*/
+.radio-stars {
+  /* remove inline-block whitespace */
+  font-size: 0;
+  /* flip the order so we can use the + and ~ combinators */
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  width: 180px;
+}
+.radio-stars > input {
+  display: none;
+}
+.radio-stars > input + label {
+  @apply inline-block w-4 h-8;
+  cursor: pointer;
+}
+.radio-stars > input + label.star-end {
+  @apply mr-1;
+}
+
+.radio-stars > input + label.star-end:before {
+  background-position: -16px 0;
+}
+
+.radio-stars > input + label:before {
+  display: inline-block;
+  content: "";
+  @apply h-8 w-4;
+  background-image: url('/star_off.svg');
+}
+.radio-stars > input:checked ~ label:before,
+.radio-stars > input + label:hover ~ label:before,
+.radio-stars > input + label:hover:before {
+  background-image: url('/star_on.svg');
+}
+.radio-stars > .stars-reset + label {
+  @apply -ml-8;
+}
+.radio-stars > .stars-reset + label:before,
+.radio-stars > .stars-reset + label:hover:before {
+  background: transparent !important;
+  @apply w-4;
+}
+.radio-stars:hover > input:not(.stars-reset) + label:before {
+  background-image: url('/star_off.svg');
+}
+.radio-stars:hover > input + label:hover ~ label:before,
+.radio-stars:hover > input + label:hover:before {
+  background-image: url('/star_on.svg');
+}
+

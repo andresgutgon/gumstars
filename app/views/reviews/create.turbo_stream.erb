@@ -1,0 +1,10 @@
+<%= turbo_stream.update(
+  :average,
+  partial: "products/shared/average",
+  locals: { average_rating: @average_rating })
+%>
+<%= turbo_stream.update(
+  :reviews,
+  partial: "reviews/shared/list",
+  locals: { reviews: @reviews })
+%>
