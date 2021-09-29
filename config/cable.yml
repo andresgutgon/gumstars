@@ -5,6 +5,12 @@ test:
   adapter: test
 
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: gumstars_production
+  adapter: async
+  # NOTE: In a real app the adapter must be Redis or PostgreSQL
+  # The 'async' adapter is not persisted and that means the data is lost.
+  # Also is not scalable.
+  # I'm using it in this project in production because is a demo app lo learn
+  # about ActionCable and TurboRails
+  # adapter: redis
+  # url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  # channel_prefix: gumstars_production

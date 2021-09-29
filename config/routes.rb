@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     root to: "products#index"
   end
 
-  resources :products, param: :slug do
-    resources :reviews
+  resources :products, only: %i[show], param: :slug do
+    resources :reviews, only: %i[new create]
   end
-  root 'welcome#index'
+
+  root 'products#show'
 end

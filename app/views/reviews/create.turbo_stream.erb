@@ -1,10 +1,14 @@
-<%= turbo_stream.update(
-  :average,
-  partial: "products/shared/average",
-  locals: { average_rating: @average_rating })
-%>
-<%= turbo_stream.update(
-  :reviews,
-  partial: "reviews/shared/list",
-  locals: { reviews: @reviews })
+<%
+  Turbo::StreamsChannel.broadcast_update_to(
+    @product,
+    target: :average,
+    partial: "products/shared/average",
+    locals: { average_rating: @average_rating }
+  )
+  Turbo::StreamsChannel.broadcast_update_to(
+    @product,
+    target: :reviews,
+    partial: "reviews/shared/list",
+    locals: { reviews: @reviews }
+  )
 %>

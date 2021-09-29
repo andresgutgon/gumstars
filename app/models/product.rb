@@ -2,7 +2,9 @@ class Product < ApplicationRecord
   before_validation :generate_slug, on: :create
 
   # Relations
-  has_many :reviews
+  #
+  # FIXME: Do this dependent destroy also at DB level with delete: :cascade
+  has_many :reviews, dependent: :destroy
 
   # Validations
   validates :name, :slug, presence: true

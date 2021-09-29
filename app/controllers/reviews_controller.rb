@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
       if @review.save
         @average_rating = product.reviews.average(:rating)
         @reviews = @product.reviews.order(created_at: :desc)
+
         format.turbo_stream
         format.html { redirect_to @product }
       else
