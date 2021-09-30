@@ -25,7 +25,7 @@ class ProductsCollection
   #
   # I'm talk to discuss about this if is not clear : )
   def fetch
-    Product.all
+    Product.includes(:reviews).all
   end
 
   private
