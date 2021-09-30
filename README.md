@@ -37,9 +37,11 @@ You can follow my though proccess through [Pull requests in chronological order]
 - [ ] Add Redis addon to Heroku or deploy to Digital Ocean. Heroku requires to add a credit card even for a free addon.
 
 ## TODO React
-- Make React version of rating system
+- [ ] Make React version of rating system UI
+- [ ] Make React version realtime with an ActionCable channel. In the vanilla version I'm using TurboStreams that sends HTML over the Wire (troll). So it doesn't work
 
 ## Fixes
+- [x] Fix DB reference to delete on cascade all reviews when a product is deleted
 - [ ] Fix modal width and scroll on mobile.
 
 ## Compromises
@@ -64,5 +66,7 @@ rails generate administrate:dashboard YourRailsModel
 ```
 
 ## Resources
-I like to document the resources I found to do what I need. This way I can re-read in understand why I took a decision
+I like to document the resources I found to do what I need. This way I can re-read and understand why I took a decision
+- [Get started with Heroku and Rails 7](https://devcenter.heroku.com/articles/getting-started-with-rails7)
 - [How to create modals using Hotwire](https://bramjetten.dev/articles/how-to-create-modals-using-hotwire)
+- [Great post about Hotwire TurboStreams](https://www.colby.so/posts/turbo-streams-on-rails)
