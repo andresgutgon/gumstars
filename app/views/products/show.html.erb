@@ -1,22 +1,25 @@
 <%= turbo_stream_from @product %>
 
-<div class='mb-10 mt-10 sm:mt-20 pb-14 border-b border-gray-300'>
-  <h1 data-test="product.title" class="font-sans font-bold text-3xl mb-10">
-    <%= @product.name  %>
-  </h1>
-  <div class='flex flex-row flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between'>
-    <div id='average' class='flex space-x-6'>
-      <%= render partial: 'products/shared/average', locals: { average_rating: @average_rating } %>
+<div itemscope itemtype="https://schema.org/Review" class='mb-10 mt-10 sm:mt-20 pb-14 border-b border-gray-300'>
+  <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Book">
+    <h1 itemprop="name" data-test="product.title" class="font-sans font-bold text-3xl mb-10">
+      <%= @product.name  %>
+    </h1>
+    <div class='flex flex-row flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between'>
+      <div id='average' class='flex space-x-6'>
+        itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+        <%= render partial: 'products/shared/average', locals: { average_rating: @average_rating } %>
+      </div>
+      <%=
+        link_to(
+          "Add review",
+          new_product_review_path(@product),
+          data: { test: 'product.add_review_button', turbo_frame: "modal" },
+          role: 'button',
+          class: 'gs-button'
+        )
+      %>
     </div>
-    <%=
-      link_to(
-        "Add review",
-        new_product_review_path(@product),
-        data: { test: 'product.add_review_button', turbo_frame: "modal" },
-        role: 'button',
-        class: 'gs-button'
-      )
-    %>
   </div>
 </div>
 

@@ -1,5 +1,11 @@
 <% unless average_rating.zero?  %>
-  <div class='font-normal text-5xl' data-test='product.average.number'>
+  <div
+    class='font-normal text-5xl'
+    data-test='product.average.number'
+    itemprop="reviewRating"
+    itemscope
+    itemtype="https://schema.org/Rating"
+  >
     <%= rating_format(average_rating) %>
   </div>
 <% end %>
