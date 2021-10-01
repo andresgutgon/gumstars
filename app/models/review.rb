@@ -14,4 +14,15 @@ class Review < ApplicationRecord
       message: "%{value} is not a valid rating. You can only put from 1 to 5 stars or half stars"
     }
   )
+
+  class << self
+    # Group all possible ratings: 0.5, 1, 1.5, 2, 2.5...
+    # in groups like [0.5, 1], [1.5, 2],...
+    # This way we can show half star at the start or the end
+    def stars_in_halfs
+      @starts_in_halfs ||= Review::VALID_RATINGS.in_groups(
+        Review::VALID_RATINGS.size / 2
+      )
+    end
+  end
 end

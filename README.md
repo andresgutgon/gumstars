@@ -1,6 +1,8 @@
 # README
 This is a job challenge code for Gumroad. You can read [about it here](https://gumroad.notion.site/Coding-challenge-f7aa85150edd41eeb3537aae4632619f)
 
+![image](https://user-images.githubusercontent.com/49499/135248683-6ffca0e3-eb10-4e91-ab18-0c90ace057c2.png)
+
 ### The stack
 Rails + React
 
@@ -44,7 +46,7 @@ You can follow my though proccess through [Pull requests in chronological order]
 - [x] Fix DB reference to delete on cascade all reviews when a product is deleted
 - [x] Fix modal width and scroll on mobile.
 
-## Compromises
+## Compromises/Considerations
 Things I would do different or I have doubts.
 
 1- ~Stars SVG as in Figma. I wanted full fidelity to Figma (Kind of, I used Tailwind defaults) regarding how stars looks
@@ -54,6 +56,21 @@ find a nicer way of not repeating this SVG. One solution would be transform in F
 2- I use [Hotwire](https://hotwired.dev/) for the vanilla JS version. Is not pure vanilla. Is better!. Less code. I think any Rails app that is not using a JS framework in 2021 should try Hotwire
 
 3- Assets (the stars icons SVGs) are deployed in /public. This is not how works Rails assets pipeline. Doing well means put in app/assets/images but is was not working on Heroku free tier and didn't wanted to expend time on this.
+
+4- In a real app showing reviews in a product page reviews should be paginated or lazy loaded. Lazyloaded if SEO is not a concern
+
+5- I made modal component from 0. In a real app I would use something like [react-portal](https://github.com/tajo/react-portal). Is not a complicated code but works nicely. DRY when makes sense.
+
+## React implementation
+When doing the React version I was wondering what was the desired implementation. It depends on what we want to achieve. It can be one of these possibilities (I'm sure there are more).
+To build a React UI in an existing Rails app I would do...
+1. A new SSR app in Node like NextJS if SEO is important.
+2. A SPA or a [Inertia.js](https://inertiajs.com/) if all the UI is going to be migrated to React but is an app where SEO is not important.
+3. Just some React components inserted in the `.erb` files if is only a small part the we want to be interactive.
+
+In the case of this demo project this is the requirement for React:
+a) Migrate the display of the product's rating to React
+b) Make the display of the rating real-time
 
 ## Administrative
 I use [aministrative](https://github.com/thoughtbot/administrate) for having a CRUD interface and
@@ -70,3 +87,5 @@ I like to document the resources I found to do what I need. This way I can re-re
 - [Get started with Heroku and Rails 7](https://devcenter.heroku.com/articles/getting-started-with-rails7)
 - [How to create modals using Hotwire](https://bramjetten.dev/articles/how-to-create-modals-using-hotwire)
 - [Great post about Hotwire TurboStreams](https://www.colby.so/posts/turbo-streams-on-rails)
+- [Inertia.js. An interesting way of using React in a Rails app](https://inertiajs.com/)
+- [Interesting read on how to manage Rails CSRF token and Ajax requests (with Axios). Check inertia_csrf.rb concern](https://pragmaticstudio.com/tutorials/rails-session-cookies-for-api-authentication)
