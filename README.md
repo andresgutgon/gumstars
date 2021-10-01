@@ -42,7 +42,7 @@ You can follow my though proccess through [Pull requests in chronological order]
 
 ## Fixes
 - [x] Fix DB reference to delete on cascade all reviews when a product is deleted
-- [ ] Fix modal width and scroll on mobile.
+- [x] Fix modal width and scroll on mobile.
 
 ## Compromises
 Things I would do different or I have doubts.

@@ -4,8 +4,9 @@
 @tailwind variants;
 
 .modal {
-  @apply flex items-center justify-center;
+  @apply flex items-start justify-center;
   @apply fixed z-40 inset-0 h-full p-6;
+  @apply overflow-y-auto;
 }
 
 .modal-window {
