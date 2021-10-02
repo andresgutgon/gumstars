@@ -18,6 +18,10 @@ gem "importmap-rails", ">= 0.3.4"
 gem "cssbundling-rails", ">= 0.1.0"
 gem 'jsbundling-rails'
 
+# React manage UI through Inertia
+# More info: https://inertiajs.com/
+gem 'inertia_rails'
+
 # Admin interface useful for generating products
 # Not necessary for this project but I'm a nerd and wanted to try
 gem "administrate"

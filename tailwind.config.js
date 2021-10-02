@@ -5,7 +5,8 @@ module.exports = {
   purge: [
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
-    './app/javascript/**/*.js'
+    './app/javascript/**/*.js',
+    './app/javascript/**/*.jsx'
   ],
   theme: {
     container: {
