@@ -4,6 +4,7 @@ import { usePage } from '@inertiajs/inertia-react'
 import Stars from '../../components/Stars'
 import Reviews from '../../components/Reviews'
 import CreateReviewModal from '../../components/CreateReviewModal'
+import ProductChannel from '../../realtime/channels/product_channel'
 
 /**
  * Average comes from backend SQL AVG function of numbers
@@ -21,7 +22,19 @@ const ProductShow = ({
   reviews
 }) => {
   const [open, setOpen] = React.useState(false)
-  const average = approximateAverage(averageRating)
+  const [localAverageRating, setLocalAverageRating] = React.useState(averageRating)
+  const [average, setAverage] = React.useState(
+    approximateAverage(averageRating)
+  )
+  const [localReviews, setReviews] = React.useState(reviews)
+  React.useEffect(() => {
+    ProductChannel.received = (data) => {
+      setReviews(data.reviews)
+      const rating = parseFloat(data.average_rating)
+      setLocalAverageRating(rating)
+      setAverage(approximateAverage(rating))
+    }
+  }, [])
   return (
     <>
       <div
@@ -43,7 +56,7 @@ const ProductShow = ({
           </h1>
           <div className='flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between'>
             <div className='flex space-x-6'>
-              {averageRating > 0 && (
+              {average > 0 && (
                 <div
                   className='font-normal text-5xl'
                   data-test='product.average.number'
@@ -54,7 +67,7 @@ const ProductShow = ({
                   {average}
                 </div>
               )}
-              <Stars fullStars rating={averageRating} />
+              <Stars fullStars rating={localAverageRating} />
             </div>
             <button
               onClick={() => setOpen(true)}
@@ -67,7 +80,7 @@ const ProductShow = ({
         </div>
       </div>
 
-      <Reviews reviews={reviews} />
+      <Reviews reviews={localReviews} />
       {open && (
         <CreateReviewModal
           apiPath={createReviewApiPath}

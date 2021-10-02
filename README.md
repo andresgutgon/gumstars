@@ -89,3 +89,4 @@ I like to document the resources I found to do what I need. This way I can re-re
 - [Great post about Hotwire TurboStreams](https://www.colby.so/posts/turbo-streams-on-rails)
 - [Inertia.js. An interesting way of using React in a Rails app](https://inertiajs.com/)
 - [Interesting read on how to manage Rails CSRF token and Ajax requests (with Axios). Check inertia_csrf.rb concern](https://pragmaticstudio.com/tutorials/rails-session-cookies-for-api-authentication)
+- [React realtimne implementation with ActionCable](https://dev.to/doctolib/rails-react-actioncable-without-the-fuss-4ebn)
