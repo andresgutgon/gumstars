@@ -28,6 +28,7 @@ const ProductShow = ({
   )
   const [localReviews, setReviews] = React.useState(reviews)
   React.useEffect(() => {
+    // Realtime comes from an ActionCabel (websocket) channel
     ProductChannel.received = (data) => {
       setReviews(data.reviews)
       const rating = parseFloat(data.average_rating)
@@ -55,7 +56,7 @@ const ProductShow = ({
             {product.name}
           </h1>
           <div className='flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between'>
-            <div className='flex space-x-6'>
+            <div className='flex space-x-4'>
               {average > 0 && (
                 <div
                   className='font-normal text-5xl'

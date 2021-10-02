@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
       new_review_params.merge(product: @product)
     )
 
+    implementation = params[:implementation] || 'vanillajs'
     saved = @review.save
     errors = @review.errors.full_messages
 
@@ -18,22 +19,22 @@ class ReviewsController < ApplicationController
 
     options = saved ? {} : { inertia: { errors: errors }}
 
-    # React implementation use Inertia.js. In the backend you just submit
-    # an AJAX request and redirect to the page where the form is
-    # FIXME: Make this check based on params[:implementation] == 'react'
-    if true
-      # Realtime in React implementation with ActionCable
-      ActionCable.server.broadcast(
-        'product',
-        average_rating: @average_rating,
-        reviews: @reviews
-      )
-      return redirect_to product_path(@product), options
+    if implementation == 'react'
+      if saved
+        # Realtime in React implementation with ActionCable
+        ActionCable.server.broadcast(
+          'product',
+          average_rating: @average_rating,
+          reviews: @reviews
+        )
+      end
+      return redirect_to(product_path(@product, implementation: implementation), options)
     end
 
+    # Not react/Inertia code is standard Rails response
     respond_to do |format|
       if saved
-        format.turbo_stream
+        format.turbo_stream # Realtime in vanillajs is done inside this template
         format.html { redirect_to @product }
       else
         flash.now[:messages] = errors
