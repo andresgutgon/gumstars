@@ -10,17 +10,26 @@ class ReviewsController < ApplicationController
       new_review_params.merge(product: @product)
     )
 
+    saved = @review.save
+    errors = @review.errors.full_messages
+
     @average_rating = product.reviews.average(:rating)
     @reviews = @product.reviews.order(created_at: :desc)
-    errors = @review.errors.full_messages
-    saved = @review.save
 
     options = saved ? {} : { inertia: { errors: errors }}
 
     # React implementation use Inertia.js. In the backend you just submit
     # an AJAX request and redirect to the page where the form is
     # FIXME: Make this check based on params[:implementation] == 'react'
-    return redirect_to product_path(@product), options if false
+    if true
+      # Realtime in React implementation with ActionCable
+      ActionCable.server.broadcast(
+        'product',
+        average_rating: @average_rating,
+        reviews: @reviews
+      )
+      return redirect_to product_path(@product), options
+    end
 
     respond_to do |format|
       if saved
