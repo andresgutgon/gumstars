@@ -7,8 +7,8 @@ const Stars = ({ rating, fullStars }) => {
     <ul className='flex space-x-1'>
       {stars.map((starGroup, index) => {
         const prevStar =  stars[index - 1 < 0 ? 0 : index - 1]
-        const starMin = starGroup[0]
-        const showFullStar = fullStars && prevStar.max <= rating
+        const starMin = Math.min(...starGroup)
+        const showFullStar = fullStars && Math.max(...prevStar) <= rating
         return (
           <li key={index} className='flex items-center justify-center'>
             <div className='star'>
@@ -16,11 +16,11 @@ const Stars = ({ rating, fullStars }) => {
                 <div className='starIcon starIcon--full' />
               )}
 
-              {(!showFullStar && rating >= starMin) && (
+              {rating >= starMin && (
                 <div className='starIcon starIcon--halfStart' />
               )}
 
-              {(!showFullStar && rating > starMin) && (
+              {rating > starMin && (
                 <div className='starIcon starIcon--halfEnd' />
               )}
             </div>

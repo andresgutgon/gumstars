@@ -18,9 +18,44 @@
 
   <body class='font-sans'>
     <div class='container pb-20 max-w-[580px]'>
+      <script charset="utf-8">
+        window.implementation = "<%= @implementation  %>"
+      </script>
+      <div class='border-b rounded pb-4 px-6 mt-10 flex justify-center items-center flex-col space-y-4'>
+        <h3 class='text-2xl'>Implementations</h3>
+        <p class='text-gray-400 text-sm text-center'>Done with plain JS (aka Hotwire) or done with React</p>
+        <ul class='flex space-x-4 items-center'>
+          <li>
+            <%= content_tag(
+              @implementation == 'vanillajs' ? :div : :a,
+              href: product_path(@product, implementation: 'vanillajs'),
+              class: switcher_classes(@implementation == 'vanillajs'),
+              data: { turbo: false }
+            ) do %>
+              <%= image_tag "javascript.svg", size: '32x32', class: 'h-8 block rounded' %>
+              <div class='text-sm'>Vanilla</div>
+            <% end %>
+          </li>
+          <li>
+            <%= content_tag(
+              @implementation == 'react' ? :div : :a,
+              href: product_path(@product, implementation: 'react'),
+              class: switcher_classes(@implementation == 'react'),
+              data: { turbo: false }
+            ) do %>
+              <%= image_tag "react.svg", size: '32x32', class: 'h-8 rounded block' %>
+              <div class='text-sm'>React</div>
+            <% end %>
+          </li>
+        </ul>
+      </div>
       <%= yield %>
     </div>
-    <%= turbo_frame_tag :modal %>
-    <div id='modal-root'></div>
+
+    <% if @implementation == 'vanillajs' %>
+      <%= turbo_frame_tag :modal %>
+    <% else %>
+      <div id='modal-root'></div>
+    <% end %>
   </body>
 </html>

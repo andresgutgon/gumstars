@@ -8,11 +8,13 @@ import { createInertiaApp } from '@inertiajs/inertia-react'
 // because there is only one page : )
 import ProductShow from './Pages/Product/Show'
 
-document.addEventListener('DOMContentLoaded', () => {
-  createInertiaApp({
-    resolve: name => ProductShow,
-    setup({ el, App, props }) {
-      render(<App {...props} />, el)
-    },
+if (window.implementation === 'react') {
+  document.addEventListener('DOMContentLoaded', () => {
+    createInertiaApp({
+      resolve: name => ProductShow,
+      setup({ el, App, props }) {
+        render(<App {...props} />, el)
+      },
+    })
   })
-})
+}

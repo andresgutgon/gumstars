@@ -1,4 +1,10 @@
 module ReviewsHelper
+  def switcher_classes(is_active)
+    base = %w[border-2 rounded flex items-center space-x-1 py-1 pl-2 pr-4]
+    all = is_active ? base + %w[border-blue-800] : base + %w[border-gray-300]
+    all.join(' ')
+  end
+
   def rating_format(rating)
     number_with_precision(
      (rating.to_f / 10).to_f,
