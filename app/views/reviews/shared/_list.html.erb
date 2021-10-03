@@ -4,8 +4,8 @@
   </h2>
   <ul class='space-y-8'>
     <% reviews.each do |review| %>
-      <li class='flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:flex-row sm:items-end'>
-        <div class='sm:order-last sm:ml-6'>
+      <li class='flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:flex-row sm:items-center'>
+        <div class='sm:order-last sm:ml-6 sm:mt-1'>
           <span class='font-bold text-xl'><%= rating_format(review.rating) %></span>
           <span data-test="<%= "product.review_#{review.id}.comment" %>" class='text-xl text-gray-400'>
             <%= review.comment %>

@@ -12,8 +12,8 @@ const Reviews = ({ reviews }) => {
       </h2>
       <ul className='space-y-8'>
         {reviews.map((review, index) =>
-          <li key={index} className='flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:items-end'>
-            <div className='sm:order-last sm:ml-6'>
+          <li key={index} className='flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:items-center'>
+            <div className='sm:order-last sm:ml-6 sm:mt-1'>
               <span className='font-bold text-xl'>{review.rating / 10}</span>&nbsp;
               <span data-test={`product.review_${review.id}.comment`} className='text-xl text-gray-400'>
                 {review.comment}
